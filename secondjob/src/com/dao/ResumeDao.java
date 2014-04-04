@@ -24,7 +24,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
-public class ResumeDao {
+public class ResumeDao {  
  
 	public Entity add(Entity entity) {
 		try {
