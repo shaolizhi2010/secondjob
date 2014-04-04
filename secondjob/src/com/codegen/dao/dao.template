@@ -18,16 +18,10 @@ $import$
 
 public class $daoName$ {
 
-	protected static SessionFactory sessionFactory = App.getInstance().getSessionFactory();
-	private Session session = sessionFactory.openSession();
 	
-	public Entity add(Entity entity) {
+	public Entity add($moduleName$Entity entity) {
 		try {
 			
-			Transaction tx = session.beginTransaction();
-
-			session.save(entity);
-			tx.commit();
 		
 
 			return entity;
