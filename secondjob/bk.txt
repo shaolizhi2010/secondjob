@@ -1,0 +1,75 @@
+	
+    	
+		String queryString = "select * from resume where 1=1 ";
+		
+		Field[] fields = entity.getClass().getDeclaredFields();        //获取实体类的所有属性，返回Field数组  
+		for(Field field :fields){
+			String fieldName = field.getName();
+			String type = field.getGenericType().toString();    //获取属性的类型
+			Method methodGet = entity.getClass().getMethod("get"+StringUtils.capitalize(fieldName));
+			
+			if(type.equals("class java.lang.String")){   
+               String valueString = (String) methodGet.invoke(entity);    //调用getter方法获取属性值
+               if(StringUtils.isNotBlank(valueString)){
+            	   queryString +=  " AND "+ fieldName+"=:"+fieldName;
+            	   
+               }
+            }
+			else if(type.equals("class java.lang.Integer")){    
+            	try{
+            		Integer valueInt = (Integer)methodGet.invoke(entity);
+            		queryString +=  " AND "+ fieldName+"=:"+fieldName;
+            	}catch (Exception e) {
+					// 值为空或不是数字，不处理
+				}
+            }
+		}
+		
+		SQLQuery query = session.createSQLQuery(queryString); 
+		
+		for(Field field :fields){
+			String fieldName = field.getName();
+			String type = field.getGenericType().toString();    //获取属性的类型
+			Method methodGet = entity.getClass().getMethod("get"+StringUtils.capitalize(fieldName));
+			
+			if(type.equals("class java.lang.String")){   
+               String valueString = (String) methodGet.invoke(entity);    //调用getter方法获取属性值
+               if(StringUtils.isNotBlank(valueString)){
+            	   query.setString(fieldName, valueString);
+               }
+            }
+			else if(type.equals("class java.lang.Integer")){    
+            	try{
+            		Integer valueInt = (Integer)methodGet.invoke(entity);
+            		query.setInteger(fieldName, valueInt);
+            	}catch (Exception e) {
+					// 值为空或不是数字，不处理
+				}
+            }
+		}
+         
+		query.addEntity(ResumeEntity.class);
+        
+        List<ResumeEntity> list = query.list();  
+        return list;  
+
+
+
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				
+								<div class="form-group">
+					 <label for="project_file">上传资料</label><input id="project_file" name="project_file" type="file" />
+					<p class="help-block">
+						项目文档 需求文档 设计文档 
+					</p> 
+				</div>
+				
+		<property name="annotatedClasses">
+			<list>
+				<value>com.resume.PersonalInformation</value>
+				<value>com.resume.Experience</value>
+				<value>com.resume.Resume</value>
+			</list>
+		</property>
