@@ -30,25 +30,22 @@ public class ResumeAction extends BaseAction {
 	public void setName(String name) {
 		this.name = name;
 	}
- 	private String person_information_id;
+ 	private String personid;
 	
-	public String getPerson_information_id() {
-		return person_information_id;
+	public String personid() {
+		return personid;
 	}
 	
-	public void setPerson_information_id(String person_information_id) {
-		this.person_information_id = person_information_id;
+	public void setPersonid(String personid) {
+		this.personid = personid;
 	}
  
 
 	public String create() {
 		
 		ResumeEntity entity = new ResumeEntity();
-
-		entity.setId(id);
-entity.setName(name);
-entity.setPerson_information_id(person_information_id);
-
+		entity.setName(name);
+		entity.setPersonid(personid);
 		 
 		ResumeService service = new ResumeService();
 		service.add(entity);
@@ -58,11 +55,6 @@ entity.setPerson_information_id(person_information_id);
 	
 	public String list() {
 		ResumeEntity entity = new ResumeEntity();
-
-		entity.setId(id);
-entity.setName(name);
-entity.setPerson_information_id(person_information_id);
-
 
 		ResumeService service = new ResumeService();
 		try {

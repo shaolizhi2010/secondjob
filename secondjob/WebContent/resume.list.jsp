@@ -46,7 +46,7 @@
 							<%=e.getName() %>
 						</td>
 						<td>
-							<%=e.getPerson_information_id() %>
+							<%=e.getPersonid() %>
 						</td>
 						<td><a href='resume!update.action?id=<%=e.getId() %>' >修改</a></td>
 						<td><a href='resume!delete.action?id=<%=e.getId() %>' >删除</a></td>

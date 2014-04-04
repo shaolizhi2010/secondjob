@@ -1,18 +1,11 @@
 package com.dao;
 
+import java.util.Iterator;
 import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
  
 
+import org.bson.types.ObjectId;
 
-
-
-
-
-
-
-import com.codegen.dao.DaoGenerator;
 import com.entity.Entity;
 import com.utils.App;
 import com.utils.L;
@@ -25,11 +18,20 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
 public class ResumeDao {  
+	
+	private DB db = App.getInstance().getDBContext();
+	
  
-	public Entity add(Entity entity) {
-		try {
-		 
-
+	public Entity add(ResumeEntity entity) {
+		try { 
+			DBCollection collection = db.getCollection("resume");
+			DBObject dbo = new BasicDBObject();
+			
+			dbo.put("name", entity.getName());
+			dbo.put("personid", entity.getPersonid());
+			
+			collection.insert(dbo);
+			
 			return entity;
 		} catch (Exception e) {
 			L.exception(this, e.getMessage());
@@ -82,18 +84,27 @@ public class ResumeDao {
 		try {
 			//test git 
 			MongoClient mongo = new MongoClient();//不指定host和port,默认使用本地数据库，
-			DB db = mongo.getDB("test");//获取指定名称的数据库对象
+			DB db = mongo.getDB("secondjob");//获取指定名称的数据库对象
 			DBCollection resumes = db.getCollection("resume");//获取指定名称的集合对象
-			 
-//			DBObject zhangsan = new BasicDBObject();
-//			zhangsan.put("_id",1);
-//			zhangsan.put("name","zhangsan");
-//			zhangsan.put("desc", "php developer");
+			
+			Iterator<DBObject> resumeIter = resumes.find().iterator();
+			while(resumeIter.hasNext()){
+				System.out.println(resumeIter.next());
+			}
+			
+	//		DBObject zhangsan = new BasicDBObject();
+
+//			zhangsan.put("name","zhangsan2");
+//			zhangsan.put("desc", "js developer");
 //		    resumes.insert(zhangsan);
-			
-			DBObject one = resumes.findOne(new BasicDBObject("name1","zhangsan"));
-			System.out.println(one.toString());
-			
+//			ObjectId qid = new ObjectId("533e45396133112e51cb8375");
+//			BasicDBObject queryObject = new BasicDBObject();
+//			queryObject.put("_id", qid);
+//			//queryObject.putAll((BSONObject)queryObject);
+//			DBObject one = resumes.findOne( queryObject );
+//			System.out.println(one);
+//			ObjectId id = (ObjectId)one.get("_id");
+//			System.out.println(one.get("_id"));
 		    
 		} catch (Exception e) {
 			e.printStackTrace();

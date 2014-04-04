@@ -13,11 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.codegen.action.ActionGenerator;
 import com.codegen.base.AbstractGenerator;
+import com.codegen.common.Constant;
 import com.codegen.entity.EntityGenerator;
 import com.utils.L;
 import com.utils.U;
@@ -28,10 +30,6 @@ public class JspForCreateGenerator extends AbstractGenerator{
 	public  void gen(String moduleName) {
 
 		try {
-
-			String srcPath = "D:/work_space/secondjob/src/";
-			String webPath = "D:/work_space/secondjob/WebContent/";
-
 			//String moduleName = "project";
 
 			// gen jsp begin
@@ -49,11 +47,11 @@ public class JspForCreateGenerator extends AbstractGenerator{
 			// *.jsp的内容
 
 			// 取jsp 的 template
-			String jspTemplateCode = getFileContent(srcPath
+			String jspTemplateCode = getFileContent(Constant.srcPath
 					+ "com/codegen/jsp/jsp.create.template");
 			
 			//jsp 里边 的from
-			String formTemplateCode = getFileContent(srcPath
+			String formTemplateCode = getFileContent(Constant.srcPath
 					+ "com/codegen/jsp/jsp.form.template");
 
 			formTemplateCode = StringUtils.replace(formTemplateCode,
@@ -71,11 +69,11 @@ public class JspForCreateGenerator extends AbstractGenerator{
 				
 				String formPropertyCode = "";
 				if(columnDisplaySize <500){	//input text
-					 formPropertyCode = getFileContent(srcPath
+					 formPropertyCode = getFileContent(Constant.srcPath
 							+ "com/codegen/jsp/jsp.form.property.template");
 				}
 				else{	//textarea
-					 formPropertyCode = getFileContent(srcPath
+					 formPropertyCode = getFileContent(Constant.srcPath
 							+ "com/codegen/jsp/jsp.form.textarea.template");
 				}
 				formPropertyCode = StringUtils.replace(formPropertyCode,
@@ -89,7 +87,7 @@ public class JspForCreateGenerator extends AbstractGenerator{
 			jspTemplateCode = StringUtils.replace(jspTemplateCode,
 					"$jspContent$", formTemplateCode);
 			
-			saveFile(jspTemplateCode, webPath + fileName + ".jsp");
+			saveFile(jspTemplateCode, Constant.webPath + fileName + ".jsp");
 
 		} catch (Exception e) {
 			e.printStackTrace();

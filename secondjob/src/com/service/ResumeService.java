@@ -10,7 +10,7 @@ import com.entity.ResumeEntity;
 public class ResumeService {
 	ResumeDao resumeDao = new ResumeDao();
 
-	public Entity add(Entity entity) {
+	public Entity add(ResumeEntity entity) {
 		return resumeDao.add(entity);
 	}
 
@@ -19,7 +19,7 @@ public class ResumeService {
 	}
 
 	public void delete(ResumeEntity entity) {
-		resumeDao.delete(entity);
+		resumeDao.delete(entity); 
 	}
 
 	public List<ResumeEntity> list() {

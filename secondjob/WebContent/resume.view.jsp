@@ -43,7 +43,8 @@
 					</div>
 					<div class="col-md-6 column">
 						<p>
-							<%=entity.getPerson_information_id() %>
+						
+							<%=entity.getPersonid()%>
 						</p>
 					</div>
 				</div>

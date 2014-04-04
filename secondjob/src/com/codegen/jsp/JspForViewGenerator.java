@@ -13,11 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.codegen.action.ActionGenerator;
 import com.codegen.base.AbstractGenerator;
+import com.codegen.common.Constant;
 import com.codegen.entity.EntityGenerator;
 import com.utils.L;
 import com.utils.U;
@@ -28,9 +30,6 @@ public class JspForViewGenerator extends AbstractGenerator{
 	public  void gen(String moduleName) {
 
 		try {
-
-			String srcPath = "D:/work_space/secondjob/src/";
-			String webPath = "D:/work_space/secondjob/WebContent/";
 
 			//String moduleName = "project";
 
@@ -50,7 +49,7 @@ public class JspForViewGenerator extends AbstractGenerator{
 			// *.jsp的内容
 
 			// 取jsp 的 template
-			String jspTemplateCode = getFileContent(srcPath
+			String jspTemplateCode = getFileContent(Constant.srcPath
 					+ "com/codegen/jsp/jsp.view.template");
 			
 			jspTemplateCode = StringUtils.replace(jspTemplateCode,
@@ -69,7 +68,7 @@ public class JspForViewGenerator extends AbstractGenerator{
 					continue; // id 写死 暂不动态处理
 				}
 	 
-				String rowTemplate = getFileContent(srcPath
+				String rowTemplate = getFileContent(Constant.srcPath
 							+ "com/codegen/jsp/jsp.view.row.template");
 				rowTemplate = StringUtils.replace(rowTemplate,
 						"$propertyName$", column.getName());
@@ -84,7 +83,7 @@ public class JspForViewGenerator extends AbstractGenerator{
 			jspTemplateCode = StringUtils.replace(jspTemplateCode,
 					"$row$", rowContent);
 			
-			saveFile(jspTemplateCode, webPath + fileName + ".jsp");
+			saveFile(jspTemplateCode, Constant.webPath + fileName + ".jsp");
 
 		} catch (Exception e) {
 			e.printStackTrace();

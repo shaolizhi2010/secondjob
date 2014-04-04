@@ -14,12 +14,6 @@
 		<result name="listPage">resume.list.jsp</result>
 		<result name="view">resume.view.jsp</result>
 	</action>
-
-	<action name="drawmoney" class="com.web.DrawmoneyAction">
-		<result name="create">drawmoney.create.jsp</result>
-		<result name="list" type="redirect">drawmoney!list.action</result>
-		<result name="listPage">drawmoney.list.jsp</result>
-		<result name="view">drawmoney.view.jsp</result>
-	</action>
+ 
 </package>
 </struts>

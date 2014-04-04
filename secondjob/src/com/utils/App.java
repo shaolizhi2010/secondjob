@@ -1,5 +1,6 @@
 package com.utils;
 
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,9 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.mongodb.DB;
+import com.mongodb.MongoClient;
+
 //singleton share by whole server
 public class App {
 	
@@ -24,6 +28,10 @@ public class App {
 	
 	private HttpClient httpClient = null;
 	private WebApplicationContext ctx = null;
+	
+	private MongoClient mongo = null;
+	private DB db = null;
+	
 	
 	public static App getInstance(){
 		return app;
@@ -54,6 +62,23 @@ public class App {
 							.getServletContext());
 		}
 		return ctx;
+	}
+	
+	public DB getDBContext(){
+
+		try {
+			if(mongo == null){
+				mongo = new MongoClient();
+				
+			}
+			if(db == null){
+				db = mongo.getDB("secondjob");
+			}
+			
+		} catch (UnknownHostException e) {
+			L.log(this, "找不到Mongo数据库");
+		}
+		return db;
 	}
 	
 }

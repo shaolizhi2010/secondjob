@@ -24,17 +24,6 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
-	<filter>
-	    <filter-name>hibernateFilter</filter-name>
-	    <filter-class>
-	     	org.springframework.orm.hibernate4.support.OpenSessionInViewFilter
-	    </filter-class>
-	</filter>
-	<filter-mapping>
-	    <filter-name>hibernateFilter</filter-name>
-	    <url-pattern>*.action</url-pattern>
-	</filter-mapping>
-
 	<!-- struts2支持：struts2 filter -->
 	<filter>
 		<filter-name>struts2</filter-name>

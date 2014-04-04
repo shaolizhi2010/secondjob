@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.codegen.base.AbstractGenerator;
+import com.codegen.common.Constant;
 import com.utils.U;
 import com.vo.ColumnVO;
 
@@ -15,7 +16,6 @@ public class DaoGenerator extends AbstractGenerator{
 
 		try {
 
-			String srcPath = "D:/work_space/secondjob/src/";
 
 			// gen dao begin
 			// file name  like ABCDao
@@ -36,7 +36,7 @@ public class DaoGenerator extends AbstractGenerator{
 			// *Dao.java的内容
 			StringBuffer code = new StringBuffer();
 			// 取dao 的 template
-			String daoTemplate = getFileContent(srcPath+"com/codegen/dao/dao.template");
+			String daoTemplate = getFileContent(Constant.srcPath+"com/codegen/dao/dao.template");
 			
 			//替换dao 名
 			daoTemplate = StringUtils.replace(daoTemplate, "$daoName$", daoName);
@@ -58,12 +58,12 @@ public class DaoGenerator extends AbstractGenerator{
 				if(column.getName().equalsIgnoreCase("id")){
 					continue;	//id暂不处理
 				}
-				String templateForcondition = getFileContent(srcPath+"com/codegen/dao/dao.select.condition.template");
+				String templateForcondition = getFileContent(Constant.srcPath+"com/codegen/dao/dao.select.condition.template");
 				templateForcondition = StringUtils.replace(templateForcondition, "$propertyName$", column.getName());
 				templateForcondition = StringUtils.replace(templateForcondition, "$propertyNameInMethod$", StringUtils.capitalize(column.getName()));
 				generatedCodeForCondition += templateForcondition;
 				
-				String templateForSetcondition  = getFileContent(srcPath+"com/codegen/dao/dao.select.setcondition.template");
+				String templateForSetcondition  = getFileContent(Constant.srcPath+"com/codegen/dao/dao.select.setcondition.template");
 				templateForSetcondition = StringUtils.replace(templateForSetcondition, "$propertyName$", column.getName());
 				templateForSetcondition = StringUtils.replace(templateForSetcondition, "$propertyNameInMethod$", StringUtils.capitalize(column.getName()));
 				generatedCodeForSetCondition += templateForSetcondition;
@@ -78,7 +78,7 @@ public class DaoGenerator extends AbstractGenerator{
 			
 			
 			code.append(daoTemplate);
-			saveFile(code.toString(), srcPath + packagePath + fileName
+			saveFile(code.toString(), Constant.srcPath + packagePath + fileName
 					+ ".java");
 
 		} catch (Exception e) { 

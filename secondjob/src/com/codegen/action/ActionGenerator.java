@@ -13,10 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.codegen.base.AbstractGenerator;
+import com.codegen.common.Constant;
 import com.codegen.entity.EntityGenerator;
 import com.utils.L;
 import com.utils.U;
@@ -28,7 +30,6 @@ public class ActionGenerator extends AbstractGenerator{
 
 		try { 
 
-			String srcPath = "D:/work_space/secondjob/src/";
 
 			//String moduleName = "project";
 
@@ -55,7 +56,7 @@ public class ActionGenerator extends AbstractGenerator{
 			// *Action.java的内容
 			
 			// 取action 的 template
-			String generatedCode = getFileContent(srcPath+"com/codegen/action/action.template");
+			String generatedCode = getFileContent(Constant.srcPath+"com/codegen/action/action.template");
 			
 			// 在 *Action.java 文件中，替换action名
 			generatedCode = StringUtils.replace(generatedCode, "$actionName$", StringUtils.capitalize(moduleName));
@@ -71,7 +72,7 @@ public class ActionGenerator extends AbstractGenerator{
 			String entityInitCode = "";
 			
 			for (ColumnVO column : columnList) {
-				String templateForProperty = getFileContent(srcPath+"com/codegen/action/action.property.template");
+				String templateForProperty = getFileContent(Constant.srcPath+"com/codegen/action/action.property.template");
 				if(column.getName().equalsIgnoreCase("id")){
 					templateForProperty = StringUtils.replace(templateForProperty, "$propertyName$", column.getName());
 					templateForProperty = StringUtils.replace(templateForProperty, "$propertyNameInMethod$", StringUtils.capitalize(column.getName()));
@@ -110,13 +111,13 @@ public class ActionGenerator extends AbstractGenerator{
 //					newImport);		
 			
 			
-			saveFile(generatedCode, srcPath + packagePath + fileName
+			saveFile(generatedCode, Constant.srcPath + packagePath + fileName
 					+ ".java");
 			
 			//auto change struts.xml
-			String strutsConfigFile = getFileContent(srcPath+"struts.xml");
+			String strutsConfigFile = getFileContent(Constant.srcPath+"struts.xml");
 			
-			String strutsConfigTemplate = getFileContent(srcPath+"com/codegen/action/action.configxml.template");
+			String strutsConfigTemplate = getFileContent(Constant.srcPath+"com/codegen/action/action.configxml.template");
 			strutsConfigTemplate = StringUtils.replace(strutsConfigTemplate, "$path$",
 					moduleName);	
 			strutsConfigTemplate = StringUtils.replace(strutsConfigTemplate, "$actionName$",
@@ -134,7 +135,7 @@ public class ActionGenerator extends AbstractGenerator{
 				strutsConfigFile = StringUtils.replace(strutsConfigFile, "</package>",
 						strutsConfigTemplate +"</package>");
 				
-				saveFile(strutsConfigFile, srcPath+"struts.xml");
+				saveFile(strutsConfigFile, Constant.srcPath+"struts.xml");
 			}
 
 		} catch (Exception e) {

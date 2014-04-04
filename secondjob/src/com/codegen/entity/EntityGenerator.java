@@ -28,7 +28,7 @@ public class EntityGenerator extends AbstractGenerator{
 
 		try {
 
-			String srcPath = "D:/work_space/secondjob/src/";
+			String srcPath = "D:/git/db/secondjob/secondjob/src/";
 
 			//String moduleName = "project";
 
