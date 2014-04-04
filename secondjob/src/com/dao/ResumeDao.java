@@ -80,6 +80,7 @@ public class ResumeDao {
 	public static void main(String[] args) {
 
 		try {
+			//test git 
 			MongoClient mongo = new MongoClient();//不指定host和port,默认使用本地数据库，
 			DB db = mongo.getDB("test");//获取指定名称的数据库对象
 			DBCollection resumes = db.getCollection("resume");//获取指定名称的集合对象

@@ -81,7 +81,7 @@ public class DaoGenerator extends AbstractGenerator{
 			saveFile(code.toString(), srcPath + packagePath + fileName
 					+ ".java");
 
-		} catch (Exception e) {
+		} catch (Exception e) { 
 			e.printStackTrace();
 		}
 
