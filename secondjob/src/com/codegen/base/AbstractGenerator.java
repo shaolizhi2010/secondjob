@@ -18,7 +18,7 @@ import com.vo.ColumnVO;
 
 public class AbstractGenerator {
 	public  void saveFile(String content, String path) {
-		try {
+		try { 
 			IOUtils.write(content, new FileOutputStream(new File(path)));
 		} catch (Exception e) {
 			L.exception("CodeGenerator", e.getMessage());

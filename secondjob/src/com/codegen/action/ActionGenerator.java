@@ -26,7 +26,7 @@ public class ActionGenerator extends AbstractGenerator{
 
 	public void gen(String moduleName) {
 
-		try {
+		try { 
 
 			String srcPath = "D:/work_space/secondjob/src/";
 
