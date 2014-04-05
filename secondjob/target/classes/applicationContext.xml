@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd">
+
+
+	<!-- 
+		<bean id="userDao" class="org.ssh.dao.UserDaoImpl">
+			<property name="sessionFactory">
+				<ref bean="sessionFactory" />
+			</property>
+		</bean>
+	
+		<bean id="service" class="org.ssh.service.UserServiceImpl">
+			<property name="userDao" ref="userDao"></property>
+		</bean>
+	 -->
+</beans> 
