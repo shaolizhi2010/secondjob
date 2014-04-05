@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.apache.commons.lang3.StringUtils;
- 
+import org.bson.types.ObjectId;
 
 import com.utils.App;
 import com.utils.L;
@@ -22,12 +22,12 @@ import com.entity.$entityName$;
 public class $daoName$ {
 	
 	private DB db = App.getInstance().getDBContext();
-	private DBCollection collection = db.getCollection("resume");
+	private DBCollection collection = db.getCollection("$moduleName$");
 	
 	public void add($entityName$ entity) {
 		try {
 			
-			DBCollection collection = db.getCollection("resume");
+			DBCollection collection = db.getCollection("$moduleName$");
 			DBObject dbo = new BasicDBObject();
 			
 $setdbo$

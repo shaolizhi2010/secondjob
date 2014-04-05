@@ -46,7 +46,7 @@ public class JspForListGenerator extends AbstractGenerator{
 			// *.jsp的内容
 
 			// 取jsp 的 template
-			String jspTemplateCode = getFileContent(Constant.srcPath
+			String jspTemplateCode = getFileContent(srcPath
 					+ "com/codegen/jsp/jsp.list.template");
 			
 			jspTemplateCode = StringUtils.replace(jspTemplateCode,
@@ -61,10 +61,10 @@ public class JspForListGenerator extends AbstractGenerator{
 				}
 				
 				//jsp table里边 的thead
-				String theadTemplateCode = getFileContent(Constant.srcPath
+				String theadTemplateCode = getFileContent(srcPath
 						+ "com/codegen/jsp/jsp.list.thead.template");
 				//jsp table里边 的row
-				String rowTemplateCode = getFileContent(Constant.srcPath
+				String rowTemplateCode = getFileContent(srcPath
 						+ "com/codegen/jsp/jsp.list.row.template");
 				
 				
@@ -82,7 +82,10 @@ public class JspForListGenerator extends AbstractGenerator{
 			jspTemplateCode = StringUtils.replace(jspTemplateCode,
 					"$row$", rowContent);
 			
-			saveFile(jspTemplateCode, Constant.webPath + fileName + ".jsp");
+			jspTemplateCode = StringUtils.replace(jspTemplateCode,
+					"$moduleName$", moduleName);
+			
+			saveFile(jspTemplateCode, webPath + fileName + ".jsp");
 
 		} catch (Exception e) {
 			e.printStackTrace();

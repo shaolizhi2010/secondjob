@@ -28,10 +28,6 @@ public class EntityGenerator extends AbstractGenerator{
 
 		try {
 
-			String srcPath = "D:/git/db/secondjob/secondjob/src/";
-
-			//String moduleName = "project";
-
 			// gen entity begin
 			// file name of java entity like ABCEntity
 			String fileName = StringUtils.capitalize(moduleName) + "Entity";

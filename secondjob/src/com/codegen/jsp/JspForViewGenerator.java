@@ -49,7 +49,7 @@ public class JspForViewGenerator extends AbstractGenerator{
 			// *.jsp的内容
 
 			// 取jsp 的 template
-			String jspTemplateCode = getFileContent(Constant.srcPath
+			String jspTemplateCode = getFileContent(srcPath
 					+ "com/codegen/jsp/jsp.view.template");
 			
 			jspTemplateCode = StringUtils.replace(jspTemplateCode,
@@ -68,7 +68,7 @@ public class JspForViewGenerator extends AbstractGenerator{
 					continue; // id 写死 暂不动态处理
 				}
 	 
-				String rowTemplate = getFileContent(Constant.srcPath
+				String rowTemplate = getFileContent(srcPath
 							+ "com/codegen/jsp/jsp.view.row.template");
 				rowTemplate = StringUtils.replace(rowTemplate,
 						"$propertyName$", column.getName());
@@ -83,7 +83,7 @@ public class JspForViewGenerator extends AbstractGenerator{
 			jspTemplateCode = StringUtils.replace(jspTemplateCode,
 					"$row$", rowContent);
 			
-			saveFile(jspTemplateCode, Constant.webPath + fileName + ".jsp");
+			saveFile(jspTemplateCode, webPath + fileName + ".jsp");
 
 		} catch (Exception e) {
 			e.printStackTrace();

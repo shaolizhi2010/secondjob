@@ -1,4 +1,7 @@
-﻿<%@ page language="java" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.entity.ProjectEntity"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -14,43 +17,51 @@
     <div class="container">
         <div class="row clearfix">
             <div class="col-md-8 column">
-
-              <table class="table">
+				<table class="table">
 				<thead>
 					<tr>
-						<th>
-							#
+						 						<th>
+							name
+						</th>						<th>
+							description
 						</th>
-						<th>
-							Product
-						</th>
-						<th>
-							Payment Taken
-						</th>
-						<th>
-							Status
-						</th>
+						 <th>修改</th>
+						 <th>删除</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							1
+			<%
+				ProjectEntity entity = new ProjectEntity();
+				
+				List<ProjectEntity> list = (List<ProjectEntity>)request.getAttribute("list");
+				if(list==null){
+					list = new ArrayList<ProjectEntity>();
+				}
+				
+				for(ProjectEntity e : list){
+					
+			%>
+				<tr>
+											<td>
+							<%=e.getName() %>
 						</td>
 						<td>
-							TB - Monthly
+							<%=e.getDescription() %>
 						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Default
-						</td>
-					</tr>
-					 
+
+					<td><a href='project!update.action?id=<%=e.getId()%>'>修改</a></td>
+					<td><a href='project!delete.action?id=<%=e.getId()%>'>删除</a></td>
+					
+				</tr>
+			<%		
+					
+				}
+				
+			%>
+
 				</tbody>
 
-
+	</table>
             </div>
 
             <div class="col-md-4 column">

@@ -15,5 +15,12 @@
 		<result name="view">resume.view.jsp</result>
 	</action>
  
+
+	<action name="project" class="com.web.ProjectAction">
+		<result name="create">project.create.jsp</result>
+		<result name="list" type="redirect">project!list.action</result>
+		<result name="listPage">project.list.jsp</result>
+		<result name="view">project.view.jsp</result>
+	</action>
 </package>
 </struts>

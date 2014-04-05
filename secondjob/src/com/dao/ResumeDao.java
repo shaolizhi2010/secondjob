@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.apache.commons.lang3.StringUtils;
- 
+import org.bson.types.ObjectId;
 
 import com.utils.App;
 import com.utils.L;
@@ -30,6 +30,7 @@ public class ResumeDao {
 			DBCollection collection = db.getCollection("resume");
 			DBObject dbo = new BasicDBObject();
 			
+if(U.toString(entity.getId()).length()>0){dbo.put("_id", new ObjectId(entity.getId()));}
 			
 			if(U.toString(entity.getName()).length()>0){
 				dbo.put("name", entity.getName());
@@ -79,6 +80,7 @@ public class ResumeDao {
 			
 			List<ResumeEntity> entityList = new ArrayList<ResumeEntity>();
 			DBObject dbo = new BasicDBObject();
+if(U.toString(entity.getId()).length()>0){dbo.put("_id", new ObjectId(entity.getId()));}
 			
 			if(U.toString(entity.getName()).length()>0){
 				dbo.put("name", entity.getName());
@@ -96,6 +98,7 @@ public class ResumeDao {
 				ResumeEntity e = new ResumeEntity();
 				DBObject dbo1 = list.next();
 				
+e.setId(dbo1.get("_id").toString());
 				e.setName(  U.toString( dbo1.get("name") ) );
 				e.setPersonid(  U.toString( dbo1.get("personid") ) );
 

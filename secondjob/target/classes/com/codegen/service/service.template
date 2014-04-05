@@ -2,8 +2,6 @@ package com.service;
 
 import java.util.List;
 
-import org.hibernate.HibernateException;
-
 import com.dao.$daoName$;
 import com.entity.Entity;
 import com.entity.$entityName$;
@@ -11,11 +9,11 @@ import com.entity.$entityName$;
 public class $serviceName$ {
 	$daoName$ $moduleName$Dao = new $daoName$();
 
-	public void add(Entity entity) {
-		return $moduleName$Dao.add(entity);
+	public void add($entityName$ entity) {
+		$moduleName$Dao.add(entity);
 	}
 
-	public void delete(String id) throws HibernateException {
+	public void delete(String id)  {
 		$moduleName$Dao.delete(id);
 	}
 
@@ -38,10 +36,7 @@ public class $serviceName$ {
 	public $entityName$ get(String id) {
 		return $moduleName$Dao.get(id);
 	}
-	
-	public void close(){
-		$moduleName$Dao.close();
-	}
+ 
 	
 	
 }

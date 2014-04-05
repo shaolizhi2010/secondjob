@@ -38,13 +38,12 @@
 				</div>	            <div class="row clearfix">
 					<div class="col-md-6 column">
 						<p>
-							person_information_id
+							personid
 						</p>
 					</div>
 					<div class="col-md-6 column">
 						<p>
-						
-							<%=entity.getPersonid()%>
+							<%=entity.getPersonid() %>
 						</p>
 					</div>
 				</div>

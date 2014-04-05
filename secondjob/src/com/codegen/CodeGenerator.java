@@ -13,9 +13,9 @@ public class CodeGenerator {
 	public static void main(String[] args) {
 
 		try {
-			String moduleName = "resume";
+			String moduleName = "project";
 			
-			new EntityGenerator().gen(moduleName);
+			//new EntityGenerator().gen(moduleName);
 			new DaoGenerator().gen(moduleName);
 			new ActionGenerator().gen(moduleName);
 			new ServiceGenerator().gen(moduleName);

@@ -2,7 +2,6 @@ package com.service;
 
 import java.util.List;
 
-
 import com.dao.ResumeDao;
 import com.entity.Entity;
 import com.entity.ResumeEntity;
@@ -14,12 +13,12 @@ public class ResumeService {
 		resumeDao.add(entity);
 	}
 
-	public void delete(String id)   {
+	public void delete(String id)  {
 		resumeDao.delete(id);
 	}
 
 	public void delete(ResumeEntity entity) {
-		resumeDao.delete(entity); 
+		resumeDao.delete(entity);
 	}
 
 	public List<ResumeEntity> list() {
@@ -37,7 +36,6 @@ public class ResumeService {
 	public ResumeEntity get(String id) {
 		return resumeDao.get(id);
 	}
-	
  
 	
 	

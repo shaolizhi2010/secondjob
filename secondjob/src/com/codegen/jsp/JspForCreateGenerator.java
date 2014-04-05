@@ -30,7 +30,6 @@ public class JspForCreateGenerator extends AbstractGenerator{
 	public  void gen(String moduleName) {
 
 		try {
-			//String moduleName = "project";
 
 			// gen jsp begin
 			// jsp name
@@ -47,11 +46,11 @@ public class JspForCreateGenerator extends AbstractGenerator{
 			// *.jsp的内容
 
 			// 取jsp 的 template
-			String jspTemplateCode = getFileContent(Constant.srcPath
+			String jspTemplateCode = getFileContent( srcPath
 					+ "com/codegen/jsp/jsp.create.template");
 			
 			//jsp 里边 的from
-			String formTemplateCode = getFileContent(Constant.srcPath
+			String formTemplateCode = getFileContent( srcPath
 					+ "com/codegen/jsp/jsp.form.template");
 
 			formTemplateCode = StringUtils.replace(formTemplateCode,
@@ -68,12 +67,14 @@ public class JspForCreateGenerator extends AbstractGenerator{
 				int columnDisplaySize = column.getColumnDisplaySize();
 				
 				String formPropertyCode = "";
-				if(columnDisplaySize <500){	//input text
-					 formPropertyCode = getFileContent(Constant.srcPath
+				if(columnDisplaySize <500 
+						&& column.getName().indexOf("description")<0){	//input text
+					
+					 formPropertyCode = getFileContent( srcPath
 							+ "com/codegen/jsp/jsp.form.property.template");
 				}
 				else{	//textarea
-					 formPropertyCode = getFileContent(Constant.srcPath
+					 formPropertyCode = getFileContent( srcPath
 							+ "com/codegen/jsp/jsp.form.textarea.template");
 				}
 				formPropertyCode = StringUtils.replace(formPropertyCode,
@@ -87,7 +88,7 @@ public class JspForCreateGenerator extends AbstractGenerator{
 			jspTemplateCode = StringUtils.replace(jspTemplateCode,
 					"$jspContent$", formTemplateCode);
 			
-			saveFile(jspTemplateCode, Constant.webPath + fileName + ".jsp");
+			saveFile(jspTemplateCode,  webPath + fileName + ".jsp");
 
 		} catch (Exception e) {
 			e.printStackTrace();

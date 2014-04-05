@@ -48,7 +48,7 @@ public class ServiceGenerator extends AbstractGenerator{
 			// *Service.java的内容
 			
 			// 取Service 的 template
-			String generatedCode = getFileContent(Constant.srcPath+"com/codegen/service/service.template");
+			String generatedCode = getFileContent(srcPath+"com/codegen/service/service.template");
 			
 			// 在 *Service.java 文件中，替换service名
 			generatedCode = StringUtils.replace(generatedCode, "$serviceName$", serviceName);
@@ -71,7 +71,7 @@ public class ServiceGenerator extends AbstractGenerator{
 //					newImport);		
 			
 			
-			saveFile(generatedCode, Constant.srcPath + packagePath + fileName
+			saveFile(generatedCode, srcPath + packagePath + fileName
 					+ ".java");
 			
 		} catch (Exception e) {

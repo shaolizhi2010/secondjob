@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.bson.types.ObjectId;
 
 import com.codegen.base.AbstractGenerator;
 import com.utils.U;
@@ -15,7 +16,6 @@ public class DaoGenerator extends AbstractGenerator{
 		
 		try {
 			// gen dao begin
-			String srcPath = getBasePath()+"src/";
 			
 			// file name  like ABCDao
 			String fileName = StringUtils.capitalize(moduleName) + "Dao";
@@ -48,17 +48,28 @@ public class DaoGenerator extends AbstractGenerator{
 			
 			for (ColumnVO column : columnList) {
 				if(column.getName().equalsIgnoreCase("id")){
-					continue;	//id暂不处理
+					
+					generatedCodeForSetentity += "e.setId(dbo1.get(\"_id\").toString());";
+					generatedCodeForSetentity += System.getProperty("line.separator");
+					//e.set$propertyNameInMethod$(  U.toString( dbo1.get("$propertyName$") ) );
+					
+					generatedCodeForSetDbo += "if(U.toString(entity.getId()).length()>0){";
+					generatedCodeForSetDbo += "dbo.put(\"_id\", new ObjectId(entity.getId()));";
+					generatedCodeForSetDbo += "}";
+					generatedCodeForSetDbo += System.getProperty("line.separator");
 				}
-				String templateForcSetdbo = getFileContent(srcPath+"com/codegen/dao/dao.setdbo.template");
-				templateForcSetdbo = StringUtils.replace(templateForcSetdbo, "$propertyName$", column.getName());
-				templateForcSetdbo = StringUtils.replace(templateForcSetdbo, "$propertyNameInMethod$", StringUtils.capitalize(column.getName()));
-				generatedCodeForSetDbo += templateForcSetdbo;
-		
-				String templateForcSetentity = getFileContent(srcPath+"com/codegen/dao/dao.setentity.template");
-				templateForcSetentity = StringUtils.replace(templateForcSetentity, "$propertyName$", column.getName());
-				templateForcSetentity = StringUtils.replace(templateForcSetentity, "$propertyNameInMethod$", StringUtils.capitalize(column.getName()));
-				generatedCodeForSetentity += templateForcSetentity;
+				else{
+					String templateForcSetdbo = getFileContent(srcPath+"com/codegen/dao/dao.setdbo.template");
+					templateForcSetdbo = StringUtils.replace(templateForcSetdbo, "$propertyName$", column.getName());
+					templateForcSetdbo = StringUtils.replace(templateForcSetdbo, "$propertyNameInMethod$", StringUtils.capitalize(column.getName()));
+					generatedCodeForSetDbo += templateForcSetdbo;
+			
+					String templateForcSetentity = getFileContent(srcPath+"com/codegen/dao/dao.setentity.template");
+					templateForcSetentity = StringUtils.replace(templateForcSetentity, "$propertyName$", column.getName());
+					templateForcSetentity = StringUtils.replace(templateForcSetentity, "$propertyNameInMethod$", StringUtils.capitalize(column.getName()));
+					generatedCodeForSetentity += templateForcSetentity;	
+				}
+
 			
 			}
 			daoTemplate = StringUtils.replace(daoTemplate, "$setdbo$",

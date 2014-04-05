@@ -1,16 +1,18 @@
 package com.entity;
 
 import java.io.Serializable;
+
+import com.codegen.common.annotation.MaxLength;
  
 public class ProjectEntity implements com.entity.Entity, Serializable {
 	
-	private int id;
+	private String id;
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
@@ -24,6 +26,7 @@ public class ProjectEntity implements com.entity.Entity, Serializable {
 		this.name = name;
 	}
 	
+	@MaxLength(value="10000")
 	private String description;
 	
 	public String getDescription() {
@@ -33,26 +36,7 @@ public class ProjectEntity implements com.entity.Entity, Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	private String payperhour;
-	
-	public String getPayperhour() {
-		return payperhour;
-	}
-	
-	public void setPayperhour(String payperhour) {
-		this.payperhour = payperhour;
-	}
-	
-	private String project_request;
-	
-	public String getProject_request() {
-		return project_request;
-	}
-	
-	public void setProject_request(String project_request) {
-		this.project_request = project_request;
-	}
+ 
 	
 	
 	

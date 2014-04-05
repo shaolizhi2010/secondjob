@@ -12,13 +12,13 @@ import com.entity.ResumeEntity;
 
 public class ResumeAction extends BaseAction {
 
-		private int id;
+		private String id;
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
  	private String name;
@@ -32,7 +32,7 @@ public class ResumeAction extends BaseAction {
 	}
  	private String personid;
 	
-	public String personid() {
+	public String getPersonid() {
 		return personid;
 	}
 	
@@ -44,8 +44,11 @@ public class ResumeAction extends BaseAction {
 	public String create() {
 		
 		ResumeEntity entity = new ResumeEntity();
-		entity.setName(name);
-		entity.setPersonid(personid);
+
+		entity.setId(id);
+entity.setName(name);
+entity.setPersonid(personid);
+
 		 
 		ResumeService service = new ResumeService();
 		service.add(entity);
@@ -55,6 +58,11 @@ public class ResumeAction extends BaseAction {
 	
 	public String list() {
 		ResumeEntity entity = new ResumeEntity();
+
+		entity.setId(id);
+entity.setName(name);
+entity.setPersonid(personid);
+
 
 		ResumeService service = new ResumeService();
 		try {

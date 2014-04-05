@@ -23,12 +23,14 @@
 					 <input class="form-control" name="name" id="name" type="text" />
 				</div>
 				<div class="form-group">
-					 <label for="personid">person_information_id</label>
+					 <label for="personid">personid</label>
 					 <input class="form-control" name="personid" id="personid" type="text" />
 				</div>
+
 				
 				<button type="submit" class="btn btn-default">完成</button>
 			</form>
+
 
             </div>
 

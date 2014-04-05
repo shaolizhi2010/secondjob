@@ -22,6 +22,9 @@ import com.vo.ColumnVO;
 
 public class AbstractGenerator {
 	
+	public String srcPath = getBasePath()+"src/";
+	public String webPath = getBasePath()+"WebContent/";
+	
 	public String getBasePath(){
 		String path = this.getClass().getClassLoader().getResource("").getPath();
 		path = StringUtils.substringBeforeLast(path, "target");
@@ -49,11 +52,15 @@ public class AbstractGenerator {
 	
 	
 
-	public void metaData(String entityname, List<ColumnVO> columnList){
+	public void metaData(String name, List<ColumnVO> columnList){
+		
+		if(!name.endsWith("Entity")){	//if module name
+			name = StringUtils.capitalize(name)+"Entity";	//to Entity name
+		}
 		
 		Class clazz = null;
 		try {
-			clazz = Class.forName("com.entity."+entityname);
+			clazz = Class.forName("com.entity."+name);
 		} catch (ClassNotFoundException e) {
 			L.exception(this, e.getMessage());
 			return;
@@ -64,17 +71,17 @@ public class AbstractGenerator {
 		for (Field field : fields) {
 			String fieldName = field.getName();
 			String type = field.getGenericType().toString(); // 获取属性的类型
-			MaxLength maxlengthAnnotation = field.getAnnotation(MaxLength.class);
-			String maxlength = "";
+			MaxLength maxlengthAnnotation = field.getDeclaredAnnotation(MaxLength.class);
+			String maxlength = "0";
 			if(maxlengthAnnotation != null){
-				maxlength = maxlengthAnnotation.toString();//获取maxlength注解
+				maxlength = maxlengthAnnotation.value().toString();//获取maxlength注解
 			}
-			
 			
 			ColumnVO vo = new ColumnVO();
 			vo.setName(fieldName);
 			vo.setType(type);
 			vo.setMaxlength(maxlength);
+			vo.setColumnDisplaySize(Integer.parseInt(maxlength));
 			columnList.add(vo);
 		}
 	}

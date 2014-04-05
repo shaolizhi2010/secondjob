@@ -21,6 +21,8 @@
 				<thead>
 					<tr>
 						 $thead$
+						 <th>修改</th>
+						 <th>删除</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -37,6 +39,9 @@
 			%>
 				<tr>
 					$row$
+					<td><a href='$moduleName$!update.action?id=<%=e.getId()%>'>修改</a></td>
+					<td><a href='$moduleName$!delete.action?id=<%=e.getId()%>'>删除</a></td>
+					
 				</tr>
 			<%		
 					

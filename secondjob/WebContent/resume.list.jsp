@@ -23,10 +23,10 @@
 						 						<th>
 							name
 						</th>						<th>
-							person_information_id
+							personid
 						</th>
-						<th>修改</th>
-						<th>删除</th>
+						 <th>修改</th>
+						 <th>删除</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -48,9 +48,10 @@
 						<td>
 							<%=e.getPersonid() %>
 						</td>
-						<td><a href='resume!update.action?id=<%=e.getId() %>' >修改</a></td>
-						<td><a href='resume!delete.action?id=<%=e.getId() %>' >删除</a></td>
 
+					<td><a href='resume!update.action?id=<%=e.getId()%>'>修改</a></td>
+					<td><a href='resume!delete.action?id=<%=e.getId()%>'>删除</a></td>
+					
 				</tr>
 			<%		
 					
