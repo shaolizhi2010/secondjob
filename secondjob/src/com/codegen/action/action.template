@@ -45,7 +45,7 @@ public class $actionName$Action extends BaseAction {
 	public String view(){
 
 		$serviceName$ service = new $serviceName$();
-		$entityName$ entity = service.get(id+"");
+		$entityName$ entity = service.get(id);
 		HttpServletRequest request = ServletActionContext.getRequest ();
 		request.setAttribute("entity", entity);
 	

@@ -41,7 +41,10 @@ $setdbo$
 	
     public void delete(String id) {  
     	try {
+			DBObject o = new BasicDBObject();
+			o.put("_id", new ObjectId(id));
 			
+			collection.remove(o);
     	} catch (Exception e) {
 			L.exception(this, e.getMessage());
 		}
@@ -49,15 +52,15 @@ $setdbo$
     
 	public void delete($entityName$ entity) {
 		try {
-			
+			String id = entity.getId();
+			delete(id);
 		} catch (Exception e) {
 			L.exception(this, e.getMessage());
 		}
 	}
     
     public List<$entityName$> list(){
-		
-        return null; 
+		return list(new $entityName$());
 	}
 	
     //分页
@@ -66,10 +69,10 @@ $setdbo$
     	if(start == 0){
     		return list();
     	}
-    	 return null;
+    	return list();
 	}
 	
-	 public List<$entityName$> list($entityName$ entity) throws Exception{
+	 public List<$entityName$> list($entityName$ entity) {
 			
 			List<$entityName$> entityList = new ArrayList<$entityName$>();
 			DBObject dbo = new BasicDBObject();
@@ -93,11 +96,29 @@ $setentity$
 	
 	public $entityName$ get(String id){
 		try {
-		 	return null;
+		 	$entityName$ e = new $entityName$();
+			DBObject o = new BasicDBObject();
+			o.put("_id", new ObjectId(id));
+			
+			DBObject dbo1 = collection.findOne(o);
+			
+			$setentity$
+			
+			return e;
     	} catch (Exception e) {
 			L.exception(this, e.getMessage());
 			return new $entityName$();
 		}
+	}
+	
+	public void update($entityName$ entity){
+		
+		DBObject o = new BasicDBObject();
+		
+		//DBObject dbo = collection.update(q, o)
+		
+		//entity.setName(U.toString( dbo.get("name") ));
+		
 	}
  
 }

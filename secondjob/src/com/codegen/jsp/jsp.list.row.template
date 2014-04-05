@@ -1,3 +1,4 @@
 						<td>
-							<%=e.get$propertyNameInMethod$() %>
+							<a href='$moduleName$!view.action?id=<%=e.getId()%>'><%=e.get$propertyNameInMethod$() %></a>
+							
 						</td>

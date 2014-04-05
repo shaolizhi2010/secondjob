@@ -48,7 +48,10 @@ if(U.toString(entity.getId()).length()>0){dbo.put("_id", new ObjectId(entity.get
 	
     public void delete(String id) {  
     	try {
+			DBObject o = new BasicDBObject();
+			o.put("_id", new ObjectId(id));
 			
+			collection.remove(o);
     	} catch (Exception e) {
 			L.exception(this, e.getMessage());
 		}
@@ -56,15 +59,15 @@ if(U.toString(entity.getId()).length()>0){dbo.put("_id", new ObjectId(entity.get
     
 	public void delete(ResumeEntity entity) {
 		try {
-			
+			String id = entity.getId();
+			delete(id);
 		} catch (Exception e) {
 			L.exception(this, e.getMessage());
 		}
 	}
     
     public List<ResumeEntity> list(){
-		
-        return null; 
+		return list(new ResumeEntity());
 	}
 	
     //分页
@@ -73,10 +76,10 @@ if(U.toString(entity.getId()).length()>0){dbo.put("_id", new ObjectId(entity.get
     	if(start == 0){
     		return list();
     	}
-    	 return null;
+    	return list();
 	}
 	
-	 public List<ResumeEntity> list(ResumeEntity entity) throws Exception{
+	 public List<ResumeEntity> list(ResumeEntity entity) {
 			
 			List<ResumeEntity> entityList = new ArrayList<ResumeEntity>();
 			DBObject dbo = new BasicDBObject();
@@ -110,11 +113,32 @@ e.setId(dbo1.get("_id").toString());
 	
 	public ResumeEntity get(String id){
 		try {
-		 	return null;
+		 	ResumeEntity e = new ResumeEntity();
+			DBObject o = new BasicDBObject();
+			o.put("_id", new ObjectId(id));
+			
+			DBObject dbo1 = collection.findOne(o);
+			
+			e.setId(dbo1.get("_id").toString());
+				e.setName(  U.toString( dbo1.get("name") ) );
+				e.setPersonid(  U.toString( dbo1.get("personid") ) );
+
+			
+			return e;
     	} catch (Exception e) {
 			L.exception(this, e.getMessage());
 			return new ResumeEntity();
 		}
+	}
+	
+	public void update(ResumeEntity entity){
+		
+		DBObject o = new BasicDBObject();
+		
+		//DBObject dbo = collection.update(q, o)
+		
+		//entity.setName(U.toString( dbo.get("name") ));
+		
 	}
  
 }

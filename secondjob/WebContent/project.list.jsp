@@ -43,10 +43,12 @@
 			%>
 				<tr>
 											<td>
-							<%=e.getName() %>
+							<a href='project!view.action?id=<%=e.getId()%>'><%=e.getName() %></a>
+							
 						</td>
 						<td>
-							<%=e.getDescription() %>
+							<a href='project!view.action?id=<%=e.getId()%>'><%=e.getDescription() %></a>
+							
 						</td>
 
 					<td><a href='project!update.action?id=<%=e.getId()%>'>修改</a></td>
