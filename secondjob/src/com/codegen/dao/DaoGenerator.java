@@ -13,10 +13,8 @@ import com.vo.ColumnVO;
 public class DaoGenerator extends AbstractGenerator{
 
 	public void gen(String moduleName) {
-
+		
 		try {
-
-
 			// gen dao begin
 			// file name  like ABCDao
 			String fileName = StringUtils.capitalize(moduleName) + "Dao";

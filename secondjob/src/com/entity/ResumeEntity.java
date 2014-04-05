@@ -2,9 +2,13 @@ package com.entity;
 
 import java.io.Serializable;
 
+import com.codegen.common.annotation.MaxLength;
+
 public class ResumeEntity implements com.entity.Entity, Serializable {
 
 	private String id;
+	
+	@MaxLength(value="100")
 	private String name;
 	private String personid;
 

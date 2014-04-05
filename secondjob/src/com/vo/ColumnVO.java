@@ -6,6 +6,16 @@ package com.vo;
 public class ColumnVO {
 	private String name;
 	private String type;
+	private String maxlength;
+	
+	public String getMaxlength() {
+		return maxlength;
+	}
+
+	public void setMaxlength(String maxlength) {
+		this.maxlength = maxlength;
+	}
+
 	private int columnDisplaySize;
 
 	public int getColumnDisplaySize() {
