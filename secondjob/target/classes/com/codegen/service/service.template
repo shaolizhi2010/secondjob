@@ -11,7 +11,7 @@ import com.entity.$entityName$;
 public class $serviceName$ {
 	$daoName$ $moduleName$Dao = new $daoName$();
 
-	public Entity add(Entity entity) {
+	public void add(Entity entity) {
 		return $moduleName$Dao.add(entity);
 	}
 

@@ -1,31 +1,45 @@
 package com.dao;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.apache.commons.lang3.StringUtils;
  
 
 import com.utils.App;
 import com.utils.L;
+import com.utils.U;
 
-$import$
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+
+import com.entity.$entityName$;
 
 public class $daoName$ {
-
 	
-	public Entity add($moduleName$Entity entity) {
+	private DB db = App.getInstance().getDBContext();
+	private DBCollection collection = db.getCollection("resume");
+	
+	public void add($entityName$ entity) {
 		try {
 			
+			DBCollection collection = db.getCollection("resume");
+			DBObject dbo = new BasicDBObject();
 			
+$setdbo$
+			
+			collection.insert(dbo);
 
-			return entity;
 		} catch (Exception e) {
 			L.exception(this, e.getMessage());
-			return null;
 		}
 	}
 	
-    public void delete(String id) throws HibernateException {  
+    public void delete(String id) {  
     	try {
 			
     	} catch (Exception e) {
@@ -43,7 +57,7 @@ public class $daoName$ {
     
     public List<$entityName$> list(){
 		
-        return list;  
+        return null; 
 	}
 	
     //分页
@@ -52,17 +66,34 @@ public class $daoName$ {
     	if(start == 0){
     		return list();
     	}
-    	 
+    	 return null;
 	}
 	
 	 public List<$entityName$> list($entityName$ entity) throws Exception{
-		
+			
+			List<$entityName$> entityList = new ArrayList<$entityName$>();
+			DBObject dbo = new BasicDBObject();
+$setdbo$
+	
+			Iterator<DBObject> list = collection.find(dbo).iterator();
+			
+			
+			
+			while(list.hasNext()){
+				
+				$entityName$ e = new $entityName$();
+				DBObject dbo1 = list.next();
+				
+$setentity$
+				entityList.add(e);
+			}
+			return entityList;
 		 
 	}
 	
 	public $entityName$ get(String id){
 		try {
-		 
+		 	return null;
     	} catch (Exception e) {
 			L.exception(this, e.getMessage());
 			return new $entityName$();

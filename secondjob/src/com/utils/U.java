@@ -18,6 +18,15 @@ public class U {
 //		
 //	}
 	
+	public static String toString(Object o){
+		if(o == null){
+			return "";
+		}
+		else{
+			return o.toString();
+		}
+	}
+	
 	public static boolean isMoney(String money){
 		if(StringUtils.isBlank(money)){
 			return false;

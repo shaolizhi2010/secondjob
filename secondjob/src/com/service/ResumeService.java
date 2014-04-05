@@ -10,8 +10,8 @@ import com.entity.ResumeEntity;
 public class ResumeService {
 	ResumeDao resumeDao = new ResumeDao();
 
-	public Entity add(ResumeEntity entity) {
-		return resumeDao.add(entity);
+	public void add(ResumeEntity entity) {
+		resumeDao.add(entity);
 	}
 
 	public void delete(String id)   {

@@ -13,12 +13,21 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.codegen.common.annotation.MaxLength;
+import com.entity.Entity;
 import com.utils.L;
 import com.vo.ColumnVO;
 
 public class AbstractGenerator {
+	
+	public String getBasePath(){
+		String path = this.getClass().getClassLoader().getResource("").getPath();
+		path = StringUtils.substringBeforeLast(path, "target");
+		return path;
+	}
+	
 	public void saveFile(String content, String path) {
 		try {
 			IOUtils.write(content, new FileOutputStream(new File(path)));
@@ -37,19 +46,36 @@ public class AbstractGenerator {
 		}
 		return fileContent;
 	}
+	
+	
 
-	public void metaData(String entity, List<ColumnVO> columnList){
+	public void metaData(String entityname, List<ColumnVO> columnList){
 		
-		Field[] fields = entity.getClass().getDeclaredFields(); // 获取实体类的所有属性，返回Field数组
+		Class clazz = null;
+		try {
+			clazz = Class.forName("com.entity."+entityname);
+		} catch (ClassNotFoundException e) {
+			L.exception(this, e.getMessage());
+			return;
+		}
+		
+		Field[] fields = clazz.getDeclaredFields(); // 获取实体类的所有属性，返回Field数组
 		
 		for (Field field : fields) {
 			String fieldName = field.getName();
 			String type = field.getGenericType().toString(); // 获取属性的类型
-			String maxlength = field.getAnnotation(MaxLength.class).toString();//获取maxlength注解
+			MaxLength maxlengthAnnotation = field.getAnnotation(MaxLength.class);
+			String maxlength = "";
+			if(maxlengthAnnotation != null){
+				maxlength = maxlengthAnnotation.toString();//获取maxlength注解
+			}
+			
+			
 			ColumnVO vo = new ColumnVO();
 			vo.setName(fieldName);
 			vo.setType(type);
 			vo.setMaxlength(maxlength);
+			columnList.add(vo);
 		}
 	}
 }
